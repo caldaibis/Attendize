@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bd9469ef2657986489da0ad7af3b8e1d",
+    "content-hash": "fd300bffa7d79ec59f7caaddd1c53f3d",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -141,6 +141,61 @@
                 "stream_filter_register"
             ],
             "time": "2019-04-09T12:31:48+00:00"
+        },
+        {
+            "name": "deniztezcan/omnipay-ideal",
+            "version": "1.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/deniztezcan/omnipay-ideal.git",
+                "reference": "4ec204af495e48150ab6a52415e28431529ac7fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/deniztezcan/omnipay-ideal/zipball/4ec204af495e48150ab6a52415e28431529ac7fa",
+                "reference": "4ec204af495e48150ab6a52415e28431529ac7fa",
+                "shasum": ""
+            },
+            "require": {
+                "ext-openssl": "*",
+                "league/omnipay": "^3",
+                "nesbot/carbon": "2.*",
+                "spatie/array-to-xml": "2.8.*"
+            },
+            "require-dev": {
+                "omnipay/tests": "^3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Omnipay\\iDeal\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Deniz Tezcan",
+                    "email": "howdy@deniztezcan.me"
+                }
+            ],
+            "description": "iDeal driver for the Omnipay PHP payment processing library",
+            "homepage": "https://github.com/deniztezcan/omnipay-ideal",
+            "keywords": [
+                "gateway",
+                "ideal",
+                "merchant",
+                "omnipay",
+                "pay",
+                "payment"
+            ],
+            "support": {
+                "issues": "https://github.com/deniztezcan/omnipay-ideal/issues",
+                "source": "https://github.com/deniztezcan/omnipay-ideal/tree/V1.4.2"
+            },
+            "time": "2020-12-02T17:28:19+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -4336,6 +4391,59 @@
                 "stylesheet"
             ],
             "time": "2019-02-22T07:42:52+00:00"
+        },
+        {
+            "name": "spatie/array-to-xml",
+            "version": "2.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/array-to-xml.git",
+                "reference": "2bf193b3f795d5a42e147c4fa155c288878312e7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/array-to-xml/zipball/2bf193b3f795d5a42e147c4fa155c288878312e7",
+                "reference": "2bf193b3f795d5a42e147c4fa155c288878312e7",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^7.0",
+                "spatie/phpunit-snapshot-assertions": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\ArrayToXml\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://murze.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Convert an array to xml",
+            "homepage": "https://github.com/spatie/array-to-xml",
+            "keywords": [
+                "array",
+                "convert",
+                "xml"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/array-to-xml/issues",
+                "source": "https://github.com/spatie/array-to-xml/tree/master"
+            },
+            "time": "2019-03-15T18:43:25+00:00"
         },
         {
             "name": "stripe/stripe-php",
@@ -8939,5 +9047,5 @@
         "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }

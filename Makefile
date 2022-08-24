@@ -22,7 +22,7 @@ setup: build
 	docker-compose exec web sh -c 'wait-for-it db:3306 -t 180 && php artisan key:generate && php artisan migrate'
 	docker-compose up -d
 	docker-compose exec web sh -c 'wait-for-it web:443 -t 120'
-	open https://localhost:8081/install
+# open https://localhost:8081/install
 	docker-compose exec web tail -f /var/log/nginx/access.log /var/log/nginx/error.log /var/log/php-fpm.log storage/logs/*
 
 # run the whole stack and open up the app in the browser
@@ -30,7 +30,7 @@ run:
 	docker-compose up -d
 	docker-compose exec web sh -c 'wait-for-it db:3306 -t 180'
 	docker-compose exec web sh -c 'wait-for-it web:443 -t 120'
-	open https://localhost:8081/
+# open https://localhost:8081/
 
 # open a bash prompt on a running web container
 shell:
