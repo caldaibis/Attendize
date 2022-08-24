@@ -43,5 +43,6 @@ $factory->define(Account::class, function (Generator $faker) {
         'stripe_refresh_token' => Str::random(10),
         'stripe_secret_key' => Str::random(10),
         'stripe_publishable_key' => Str::random(10),
+        'mollie_api_key' => Str::random(10),
     ];
 });

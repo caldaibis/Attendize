@@ -42,6 +42,8 @@ return array (
   'stripe_publishable_key' => 'Stripe publishable key',
   'stripe_secret_key' => 'Stripe secret key',
   'stripe_settings' => 'Stripe Settings',
+  'mollie_settings' => 'Mollie Settings',
+  'mollie_api_key' => 'Mollie api key',
   'timezone' => 'Timezone',
   'users' => 'Users',
   'version_info' => 'Version informations',

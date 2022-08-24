@@ -3,7 +3,7 @@
 return [
 
     // The default gateway to use
-    'default' => 'stripe',
+    'default' => 'mollie',
 
     // Add in each gateway here
     'gateways' => [
@@ -17,6 +17,10 @@ return [
         ],
         'stripe' => [
             'driver'  => 'Stripe',
+            'options' => [],
+        ],
+        'mollie' => [
+            'driver'  => 'Mollie',
             'options' => [],
         ],
     ],

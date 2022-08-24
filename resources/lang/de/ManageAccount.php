@@ -42,6 +42,8 @@ return array (
   'stripe_publishable_key' => 'Öffentlicher Stripe Schlüssel',
   'stripe_secret_key' => 'Stripe secret key',
   'stripe_settings' => 'Stripe Einstellungen',
+  'mollie_settings' => 'Mollie Einstellungen',
+  'mollie_api_key' => 'Mollie api key',
   'timezone' => 'Zeitzone',
   'users' => 'Benutzer',
   'version_info' => 'Version informations',

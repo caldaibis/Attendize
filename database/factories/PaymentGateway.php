@@ -21,7 +21,7 @@ $factory->state(PaymentGateway::class, 'Dummy', [
     'is_on_site' => 1,
     'can_refund' => 1,
     'name' => 'Dummy',
-    'default' => 1,
+    'default' => 0,
     'admin_blade_template' => '',
     'checkout_blade_template' => 'Public.ViewEvent.Partials.Dummy'
 ]);
@@ -46,4 +46,15 @@ $factory->state(PaymentGateway::class, 'Stripe SCA', [
     'default' => 0,
     'admin_blade_template' => 'ManageAccount.Partials.StripeSCA',
     'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentStripeSCA'
+]);
+
+$factory->state(PaymentGateway::class, 'Mollie', [
+    'provider_name' => 'Mollie',
+    'provider_url' => 'https://www.mollie.com',
+    'is_on_site' => 0,
+    'can_refund' => 1,
+    'name' => 'Mollie',
+    'default' => 1,
+    'admin_blade_template' => 'ManageAccount.Partials.Mollie',
+    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentMollie'
 ]);

@@ -65,7 +65,8 @@ class Account extends MyBaseModel
         'stripe_refresh_token',
         'stripe_secret_key',
         'stripe_publishable_key',
-        'stripe_data_raw'
+        'stripe_data_raw',
+        'mollie_api_key',
     ];
 
     /**
@@ -170,5 +171,16 @@ class Account extends MyBaseModel
         }
 
         return $this->stripe_secret_key;
+    }
+
+
+    /**
+     * Get the mollie api key.
+     *
+     * @return \Illuminate\Support\Collection|mixed|static
+     */
+    public function getMollieApiKeyAttribute()
+    {
+        return $this->mollie_api_key;
     }
 }

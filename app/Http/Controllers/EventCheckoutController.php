@@ -336,11 +336,17 @@ class EventCheckoutController extends Controller
             ]);
         }
 
+        // return response()->json([
+        //     'status'      => 'success',
+        //     'redirectUrl' => route('showEventPayment', [
+        //             'event_id'    => $event_id,
+        //             'is_embedded' => $this->is_embedded
+        //         ])
+        // ]);
         return response()->json([
             'status'      => 'success',
-            'redirectUrl' => route('showEventPayment', [
+            'redirectUrl' => route('postCreateOrder', [
                     'event_id'    => $event_id,
-                    'is_embedded' => $this->is_embedded
                 ])
         ]);
 
@@ -387,6 +393,9 @@ class EventCheckoutController extends Controller
      */
     public function postCreateOrder(Request $request, $event_id)
     {
+        return view('Public.ViewEvent.EventPagePayment', $viewData);
+        var_dump($request_data);
+        exit();
         $request_data = $ticket_order = session()->get('ticket_order_' . $event_id . ".request_data",[0 => []]);
         $request_data = array_merge($request_data[0], $request->except(['cardnumber', 'cvc']));
 

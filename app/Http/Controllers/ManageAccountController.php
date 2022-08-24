@@ -22,6 +22,7 @@ use Illuminate\Support\Str;
 use Services\PaymentGateway\Dummy;
 use Services\PaymentGateway\Stripe;
 use Services\PaymentGateway\StripeSCA;
+use Services\PaymentGateway\Mollie;
 use Utils;
 use Illuminate\Support\Facades\Lang;
 
@@ -127,6 +128,9 @@ class ManageAccountController extends MyBaseController
                 break;
             case StripeSCA::GATEWAY_NAME :
                 $config = $request->get('stripe_sca');
+                break;
+            case Mollie::GATEWAY_NAME :
+                $config = $request->get('mollie');
                 break;
             case Dummy::GATEWAY_NAME :
                 break;
