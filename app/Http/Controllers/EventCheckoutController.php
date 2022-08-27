@@ -336,17 +336,11 @@ class EventCheckoutController extends Controller
             ]);
         }
 
-        // return response()->json([
-        //     'status'      => 'success',
-        //     'redirectUrl' => route('showEventPayment', [
-        //             'event_id'    => $event_id,
-        //             'is_embedded' => $this->is_embedded
-        //         ])
-        // ]);
         return response()->json([
             'status'      => 'success',
-            'redirectUrl' => route('postCreateOrder', [
+            'redirectUrl' => route('showEventPayment', [
                     'event_id'    => $event_id,
+                    'is_embedded' => $this->is_embedded
                 ])
         ]);
 
@@ -393,9 +387,6 @@ class EventCheckoutController extends Controller
      */
     public function postCreateOrder(Request $request, $event_id)
     {
-        return view('Public.ViewEvent.EventPagePayment', $viewData);
-        var_dump($request_data);
-        exit();
         $request_data = $ticket_order = session()->get('ticket_order_' . $event_id . ".request_data",[0 => []]);
         $request_data = array_merge($request_data[0], $request->except(['cardnumber', 'cvc']));
 
@@ -437,7 +428,7 @@ class EventCheckoutController extends Controller
             $response = $gateway->startTransaction($order_total, $order_email, $event);
 
             if ($response->isSuccessful()) {
-
+                
                 session()->push('ticket_order_' . $event_id . '.transaction_id',
                     $response->getTransactionReference());
 
@@ -451,7 +442,10 @@ class EventCheckoutController extends Controller
                 return $this->completeOrder($event_id);
 
             } elseif ($response->isRedirect()) {
-
+                
+                session()->push('ticket_order_' . $event_id . '.transaction_id',
+                    $response->getTransactionReference());
+                
                 $additionalData = ($gateway->storeAdditionalData()) ? $gateway->getAdditionalData($response) : array();
 
                 session()->push('ticket_order_' . $event_id . '.transaction_data',
@@ -473,6 +467,7 @@ class EventCheckoutController extends Controller
                 return response()->json($return);
 
             } else {
+                
                 // display error to customer
                 return response()->json([
                     'status'  => 'error',
@@ -503,8 +498,8 @@ class EventCheckoutController extends Controller
      */
     public function showEventCheckoutPaymentReturn(Request $request, $event_id)
     {
-
         $ticket_order = session()->get('ticket_order_' . $event_id);
+        $ticket_order['transaction_id'] = session()->get('ticket_order_' . $event_id . '.transaction_id')[0];
 
         $payment_gateway_config = $ticket_order['account_payment_gateway']->config + [
                 'testMode' => config('attendize.enable_test_payments')];
@@ -512,8 +507,11 @@ class EventCheckoutController extends Controller
         $payment_gateway_factory = new PaymentGatewayFactory();
         $gateway = $payment_gateway_factory->create($ticket_order['payment_gateway']->name, $payment_gateway_config);
         $gateway->extractRequestParameters($request);
-        $response = $gateway->completeTransaction($ticket_order['transaction_data'][0]);
-
+        
+        $response = $gateway->completeTransaction($ticket_order);
+        
+        // var_dump($response->getMessage());
+        // die();
 
         if ($response->isSuccessful()) {
             session()->push('ticket_order_' . $event_id . '.transaction_id', $response->getTransactionReference());

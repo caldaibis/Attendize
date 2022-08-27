@@ -24,10 +24,15 @@ class Mollie
 
     private function createTransactionData($order_total, $order_email, $event)
     {
+        $returnUrl = route('showEventCheckoutPaymentReturn', [
+            'event_id' => $event->id,
+        ]);
+
         $this->transaction_data = [
             'amount' => $order_total,
             'currency' => $event->currency->code,
             'description' => 'Order for customer: ' . $order_email,
+            'returnUrl' => $returnUrl,
             'receipt_email' => $order_email
         ];
 
@@ -37,8 +42,7 @@ class Mollie
     public function startTransaction($order_total, $order_email, $event)
     {
         $this->createTransactionData($order_total, $order_email, $event);
-        $transaction = $this->gateway->purchase($this->transaction_data);
-        $response = $transaction->send();
+        $response = $this->gateway->purchase($this->transaction_data)->send();
 
         return $response;
     }
@@ -57,7 +61,11 @@ class Mollie
         }
     }
 
-    public function completeTransaction($data) {}
+    public function completeTransaction($ticket_order_data)
+    {        
+        $response = $this->gateway->completePurchase(['transaction_reference' => $ticket_order_data['transaction_id']])->send();
+        return $response;
+    }
 
     public function getAdditionalData(){}
 
